@@ -197,6 +197,8 @@ let g:syntastic_java_checkers = ['checkstyle']  " use checkstyle, even if I have
 let g:syntastic_enable_perl_checker = 1
 let g:syntastic_perl_checkers = ['perl']
 
+let g:syntastic_javascript_checkers = ['jshint']
+
 let g:syntastic_coffee_checkers = ['coffeelint']
 let g:syntastic_coffee_coffeelint_args = "--csv --file config.json"
 
@@ -213,6 +215,15 @@ nnoremap <F8> :VCSAnnotate!<CR>
 let g:airline_theme='molokai'
 set laststatus=2
 let g:airline#extensions#tabline#enabled=1
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
 "function s:find_jshintrc(dir)
 "    let l:found = globpath(a:dir, '.jshintrc')
