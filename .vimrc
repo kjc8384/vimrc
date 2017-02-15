@@ -26,6 +26,7 @@ Plugin 'vim-javascript'
 Plugin 'othree/html5.vim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'jeroenbourgois/vim-actionscript'
+Plugin 'leafgarland/typescript-vim'
 
 call vundle#end()
 
@@ -85,6 +86,9 @@ au BufNewFile,BufReadPost *.coffee set et filetype=coffeescript
 
 " python
 au BufNewFile,BufReadPost *.py set et filetype=python
+
+" typescript
+au BufNewFile,BufReadPost *.ts set filetype=typescript
 " }}}
 
 syntax on
