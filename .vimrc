@@ -22,11 +22,13 @@ Plugin 'derekwyatt/vim-scala'
 Plugin 'vcscommand.vim'
 "Plugin 'Yggdroot/indentLine'
 Plugin 'indenthtml.vim'
-Plugin 'vim-javascript'
+"Plugin 'vim-javascript'
 Plugin 'othree/html5.vim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'jeroenbourgois/vim-actionscript'
 Plugin 'leafgarland/typescript-vim'
+Plugin 'othree/yajs.vim'
+Plugin 'othree/es.next.syntax.vim'
 
 call vundle#end()
 
@@ -44,8 +46,8 @@ set nobackup
 "set cscopeprg=mlcscope
 
 
-"set noet
-set et
+set noet
+"set et
 set ts=4
 set sts=4
 set sw=4
@@ -89,6 +91,9 @@ au BufNewFile,BufReadPost *.py set et filetype=python
 
 " typescript
 au BufNewFile,BufReadPost *.ts set filetype=typescript
+
+" json
+au BufNewFile,BufReadPost *.json set filetype=json
 " }}}
 
 syntax on
@@ -201,7 +206,8 @@ let g:syntastic_java_checkers = ['checkstyle']  " use checkstyle, even if I have
 let g:syntastic_enable_perl_checker = 1
 let g:syntastic_perl_checkers = ['perl']
 
-let g:syntastic_javascript_checkers = ['jshint']
+"let g:syntastic_javascript_checkers = ['jshint']
+let g:syntastic_javascript_checkers = ['eslint']
 
 let g:syntastic_coffee_checkers = ['coffeelint']
 let g:syntastic_coffee_coffeelint_args = "--csv --file config.json"
