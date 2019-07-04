@@ -135,6 +135,8 @@ if has("unix")
     set undodir=$HOME/.vim/undo
 elseif has("win32")
     set undodir=~/.vim/undo
+else
+	set undodir=$HOME/.vim/undo
 endif
 
 
