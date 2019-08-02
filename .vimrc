@@ -41,6 +41,7 @@ set nocompatible
 set autoindent
 set smartindent
 set nobackup
+set cursorline
 
 " 20120702 cscope
 "set cscopeprg=mlcscope
@@ -94,6 +95,9 @@ au BufNewFile,BufReadPost *.ts set filetype=typescript
 
 " json
 au BufNewFile,BufReadPost *.json set filetype=json
+
+" yaml
+au BufNewFile,BufReadPost *.yaml set et 
 " }}}
 
 syntax on
@@ -149,6 +153,8 @@ nnoremap <F6> :make<CR>
 nnoremap <F9> :!./%<CR>
 nnoremap <F11> :set encoding=cp949<CR> :e<CR>
 nnoremap <F12> :set encoding=utf-8<CR> :e<CR>
+
+nnoremap <silent> <Leader>l ml:execute 'match Search /\%'.line('.').'l/'<CR>
 
 
 
