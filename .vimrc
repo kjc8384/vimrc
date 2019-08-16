@@ -1,4 +1,4 @@
-"Joongchul Kim : 20151012
+"Joongchul Kim : 20190816
 
 " Vundle
 
@@ -267,3 +267,7 @@ let g:syntastic_check_on_wq = 0
 "au BufEnter * call UpdateJsHintConf()
 
 "for javascript : http://dance.computer.dance/posts/2015/04/using-ctags-on-modern-javascript.html
+
+" OS clipboard integration
+" be sure to check +clipboard 
+set clipboard=unnamed
