@@ -32,6 +32,7 @@ Plugin 'othree/es.next.syntax.vim'
 
 call vundle#end()
 
+let g:airline#extensions#whitespace#enabled = 0
 
 " load default
 "source $VIMRUNTIME/vimrc_example.vim
