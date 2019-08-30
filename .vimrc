@@ -29,6 +29,7 @@ Plugin 'jeroenbourgois/vim-actionscript'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'othree/yajs.vim'
 Plugin 'othree/es.next.syntax.vim'
+Plugin 'godlygeek/tabular'
 
 call vundle#end()
 
@@ -272,3 +273,9 @@ let g:syntastic_check_on_wq = 0
 " OS clipboard integration
 " be sure to check +clipboard 
 set clipboard=unnamed
+
+"Tabular
+nmap <Leader>a= :Tabularize /=<CR>
+vmap <Leader>a= :Tabularize /=<CR>
+nmap <Leader>a\| :Tabularize /\|<CR>
+vmap <Leader>a\| :Tabularize /\|<CR>
