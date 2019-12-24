@@ -100,6 +100,9 @@ au BufNewFile,BufReadPost *.json set filetype=json
 
 " yaml
 au BufNewFile,BufReadPost *.yaml set et 
+
+" markdown
+au BufNewFile,BufReadPost *.md set et 
 " }}}
 
 syntax on
