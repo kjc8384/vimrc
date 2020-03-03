@@ -4,6 +4,7 @@ antigen bundle zsh-users/zsh-completions
 antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle aws
 antigen bundle z
+antigen bundle history
 antigen bundle urltools
 antigen bundle npm
 antigen bundle osx
