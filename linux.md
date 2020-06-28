@@ -2,6 +2,7 @@
 
 - ulauncher
 - [fusuma](https://github.com/iberianpig/fusuma)
+- plank
 
 # kensington trackball (slimblade)
 
