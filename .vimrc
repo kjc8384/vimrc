@@ -10,7 +10,8 @@ call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'geoffharcourt/vim-matchit'
-Plugin 'tagbar'
+Plugin 'neoclide/coc.nvim'
+Plugin 'liuchengxu/vista.vim'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'ctrlp.vim'
@@ -30,6 +31,7 @@ Plugin 'leafgarland/typescript-vim'
 Plugin 'othree/yajs.vim'
 Plugin 'othree/es.next.syntax.vim'
 Plugin 'godlygeek/tabular'
+Plugin 'prabirshrestha/vim-lsp'
 
 call vundle#end()
 
@@ -150,9 +152,6 @@ endif
 
 
 """ key mappings
-
-"map <C-o> :vs ./<cr>
-
 nnoremap <F5> :checkt<CR>
 nnoremap <F6> :make<CR>
 nnoremap <F9> :!./%<CR>
@@ -160,8 +159,6 @@ nnoremap <F11> :set encoding=cp949<CR> :e<CR>
 nnoremap <F12> :set encoding=utf-8<CR> :e<CR>
 
 nnoremap <silent> <Leader>l ml:execute 'match Search /\%'.line('.').'l/'<CR>
-
-
 
 
 " comment/uncomment mapping
@@ -206,11 +203,11 @@ nnoremap <C-L> :bn<CR>
 nnoremap <C-N> :cn<CR>
 nnoremap <C-P> :cp<CR>
 
-" jckim for maven...
+" for maven...
 set makeprg=mvn3\ compile\ -f\ /kbs/kdns3/nrcs_web/pom.xml
 set errorformat=\[ERROR]\ %f:[%l\\,%v]\ %m
 
-" jckim syntastic
+" syntastic
 " When writing a file, if there are errors, have Syntastic plugin mark them
 let g:syntastic_enable_signs=1
 let g:syntastic_auto_loc_list=1
@@ -219,7 +216,6 @@ let g:syntastic_java_checkers = ['checkstyle']  " use checkstyle, even if I have
 let g:syntastic_enable_perl_checker = 1
 let g:syntastic_perl_checkers = ['perl']
 
-"let g:syntastic_javascript_checkers = ['jshint']
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_typescript_checkers = ['eslint']
 
@@ -249,31 +245,6 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
-"function s:find_jshintrc(dir)
-"    let l:found = globpath(a:dir, '.jshintrc')
-"    if filereadable(l:found)
-"        return l:found
-"    endif
-"
-"    let l:parent = fnamemodify(a:dir, ':h')
-"    if l:parent != a:dir
-"        return s:find_jshintrc(l:parent)
-"    endif
-"
-"    return "~/.jshintrc"
-"endfunction
-"
-"function UpdateJsHintConf()
-"    let l:dir = expand('%:p:h')
-"    let l:jshintrc = s:find_jshintrc(l:dir)
-"    let g:syntastic_javascript_jshint_args = '--config ' . l:jshintrc
-"    echo '--config' + l:jshintrc
-"endfunction
-"
-"au BufEnter * call UpdateJsHintConf()
-
-"for javascript : http://dance.computer.dance/posts/2015/04/using-ctags-on-modern-javascript.html
-
 " OS clipboard integration
 " be sure to check +clipboard 
 set clipboard=unnamed
@@ -283,3 +254,35 @@ nmap <Leader>a= :Tabularize /=<CR>
 vmap <Leader>a= :Tabularize /=<CR>
 nmap <Leader>a\| :Tabularize /\|<CR>
 vmap <Leader>a\| :Tabularize /\|<CR>
+
+" language server
+if executable('typescript-language-server')
+	au User lsp_setup call lsp#register_server({
+				\ 'name': 'javascript support using typescript-language-server',
+				\ 'cmd': {server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
+				\ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'package.json'))},
+				\ 'whitelist': ['javascript', 'javascript.jsx', 'javascriptreact'],
+				\ })
+endif
+
+function! s:on_lsp_buffer_enabled() abort
+	setlocal omnifunc=lsp#complete
+	setlocal signcolumn=yes
+	if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
+	nmap <buffer> gd <plug>(lsp-definition)
+	nmap <buffer> gr <plug>(lsp-references)
+	nmap <buffer> gi <plug>(lsp-implementation)
+	nmap <buffer> gt <plug>(lsp-type-definition)
+	nmap <buffer> <leader>rn <plug>(lsp-rename)
+	nmap <buffer> [g <Plug>(lsp-previous-diagnostic)
+	nmap <buffer> ]g <Plug>(lsp-next-diagnostic)
+	nmap <buffer> K <plug>(lsp-hover)
+
+	" refer to doc to add more commands
+endfunction
+
+augroup lsp_install
+	au!
+	" call s:on_lsp_buffer_enabled only for languages that has the server registered.
+	autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+augroup END
