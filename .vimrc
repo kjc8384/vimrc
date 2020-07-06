@@ -12,6 +12,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'geoffharcourt/vim-matchit'
 Plugin 'neoclide/coc.nvim'
 Plugin 'liuchengxu/vista.vim'
+" need fonts : https://github.com/ryanoasis/nerd-fonts
 Plugin 'easymotion/vim-easymotion'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'ctrlp.vim'
@@ -32,6 +33,9 @@ Plugin 'othree/yajs.vim'
 Plugin 'othree/es.next.syntax.vim'
 Plugin 'godlygeek/tabular'
 Plugin 'prabirshrestha/vim-lsp'
+
+" see wiki : https://github.com/prabirshrestha/vim-lsp/wiki/Servers-JavaScript
+" npm install -g typescript typescript-language-server
 
 call vundle#end()
 
