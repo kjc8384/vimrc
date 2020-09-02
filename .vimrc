@@ -3,6 +3,7 @@
 " Vundle
 
 set nocompatible
+set hidden
 filetype off
 
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -18,23 +19,29 @@ Plugin 'vim-syntastic/syntastic'
 Plugin 'ctrlp.vim'
 Plugin 'bling/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'steffanc/cscopemaps.vim'
+"Plugin 'steffanc/cscopemaps.vim'
 Plugin 'vim-coffee-script'
-Plugin 'derekwyatt/vim-scala'
+"Plugin 'derekwyatt/vim-scala'
 Plugin 'vcscommand.vim'
 "Plugin 'Yggdroot/indentLine'
 Plugin 'indenthtml.vim'
 "Plugin 'vim-javascript'
 Plugin 'othree/html5.vim'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'jeroenbourgois/vim-actionscript'
+"Plugin 'jeroenbourgois/vim-actionscript'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'othree/yajs.vim'
 Plugin 'othree/es.next.syntax.vim'
 Plugin 'godlygeek/tabular'
+Plugin 'prabirshrestha/asyncomplete.vim'
+Plugin 'prabirshrestha/async.vim'
 Plugin 'prabirshrestha/vim-lsp'
+Plugin 'prabirshrestha/asyncomplete-lsp.vim'
+Plugin 'embear/vim-localvimrc'
 
-" see wiki : https://github.com/prabirshrestha/vim-lsp/wiki/Servers-JavaScript
+Plugin 'ryanolsonx/vim-lsp-javascript'
+
+" see wiki : https://github.com/ryanolsonx/vim-lsp-javascript
 " npm install -g typescript typescript-language-server
 
 call vundle#end()
@@ -129,7 +136,7 @@ set hls
 
 set title
 
-set foldmethod=marker
+"set foldmethod=marker
 
 "use mouse wheel for scroll
 if &term == "screen"
@@ -208,8 +215,8 @@ nnoremap <C-N> :cn<CR>
 nnoremap <C-P> :cp<CR>
 
 " for maven...
-set makeprg=mvn3\ compile\ -f\ /kbs/kdns3/nrcs_web/pom.xml
-set errorformat=\[ERROR]\ %f:[%l\\,%v]\ %m
+"set makeprg=mvn3\ compile\ -f\ /kbs/kdns3/nrcs_web/pom.xml
+"set errorformat=\[ERROR]\ %f:[%l\\,%v]\ %m
 
 " syntastic
 " When writing a file, if there are errors, have Syntastic plugin mark them
@@ -259,16 +266,10 @@ vmap <Leader>a= :Tabularize /=<CR>
 nmap <Leader>a\| :Tabularize /\|<CR>
 vmap <Leader>a\| :Tabularize /\|<CR>
 
-" language server
-if executable('typescript-language-server')
-	au User lsp_setup call lsp#register_server({
-				\ 'name': 'javascript support using typescript-language-server',
-				\ 'cmd': {server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
-				\ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'package.json'))},
-				\ 'whitelist': ['javascript', 'javascript.jsx', 'javascriptreact'],
-				\ })
-endif
+" vim-localvimrc
+let g:localvimrc_ask=0
 
+" language server
 function! s:on_lsp_buffer_enabled() abort
 	setlocal omnifunc=lsp#complete
 	setlocal signcolumn=yes
