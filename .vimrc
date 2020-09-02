@@ -258,7 +258,10 @@ let g:syntastic_check_on_wq = 0
 
 " OS clipboard integration
 " be sure to check +clipboard 
-set clipboard=unnamed
+" mac
+"set clipboard=unnamed
+" linux
+set clipboard=unnamedplus
 
 "Tabular
 nmap <Leader>a= :Tabularize /=<CR>
