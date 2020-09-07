@@ -105,6 +105,7 @@ source ~/.antigenrc
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias eee='python ~/kbs/util/ec2-gazua/ec2-gz.py'
 alias rm='rm -i'
+alias vim='nvim'
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

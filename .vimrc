@@ -9,18 +9,17 @@ filetype off
 call plug#begin('~/.vim/plugged')
 
 Plug 'geoffharcourt/vim-matchit'
-Plug 'neoclide/coc.nvim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'liuchengxu/vista.vim'
 " need fonts : https://github.com/ryanoasis/nerd-fonts
 Plug 'easymotion/vim-easymotion'
 Plug 'vim-syntastic/syntastic'
-Plug 'ctrlpvim/ctrlp.vim'
+"Plug 'ctrlpvim/ctrlp.vim'
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 "Plug 'steffanc/cscopemaps.vim'
 "Plug 'vim-coffee-script'
 "Plug 'derekwyatt/vim-scala'
-"Plug 'vcscommand.vim'
 "Plug 'Yggdroot/indentLine'
 "Plug 'indenthtml.vim'
 "Plug 'vim-javascript'
@@ -31,17 +30,8 @@ Plug 'leafgarland/typescript-vim'
 Plug 'othree/yajs.vim'
 Plug 'othree/es.next.syntax.vim'
 Plug 'godlygeek/tabular'
-Plug 'prabirshrestha/asyncomplete.vim'
-Plug 'prabirshrestha/async.vim'
-Plug 'prabirshrestha/vim-lsp'
-Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'embear/vim-localvimrc'
 Plug 'tpope/vim-fugitive'
-
-Plug 'ryanolsonx/vim-lsp-javascript'
-
-" see wiki : https://github.com/ryanolsonx/vim-lsp-javascript
-" npm install -g typescript typescript-language-server
 
 call plug#end()
 
@@ -272,24 +262,51 @@ vmap <Leader>a\| :Tabularize /\|<CR>
 let g:localvimrc_ask=0
 
 " language server
-function! s:on_lsp_buffer_enabled() abort
-	setlocal omnifunc=lsp#complete
-	setlocal signcolumn=yes
-	if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
-	nmap <buffer> gd <plug>(lsp-definition)
-	nmap <buffer> gr <plug>(lsp-references)
-	nmap <buffer> gi <plug>(lsp-implementation)
-	nmap <buffer> gt <plug>(lsp-type-definition)
-	nmap <buffer> <leader>rn <plug>(lsp-rename)
-	nmap <buffer> [g <Plug>(lsp-previous-diagnostic)
-	nmap <buffer> ]g <Plug>(lsp-next-diagnostic)
-	nmap <buffer> K <plug>(lsp-hover)
+"function! s:on_lsp_buffer_enabled() abort
+"	setlocal omnifunc=lsp#complete
+"	setlocal signcolumn=yes
+"	if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
+"	nmap <buffer> gd <plug>(lsp-definition)
+"	nmap <buffer> gr <plug>(lsp-references)
+"	nmap <buffer> gi <plug>(lsp-implementation)
+"	nmap <buffer> gt <plug>(lsp-type-definition)
+"	nmap <buffer> <leader>rn <plug>(lsp-rename)
+"	nmap <buffer> [g <Plug>(lsp-previous-diagnostic)
+"	nmap <buffer> ]g <Plug>(lsp-next-diagnostic)
+"	nmap <buffer> K <plug>(lsp-hover)
+"
+"	" refer to doc to add more commands
+"endfunction
+"
+"augroup lsp_install
+"	au!
+"	" call s:on_lsp_buffer_enabled only for languages that has the server registered.
+"	autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+"augroup END
 
-	" refer to doc to add more commands
+"Coc
+set updatetime=300
+set shortmess+=c
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
 endfunction
 
-augroup lsp_install
-	au!
-	" call s:on_lsp_buffer_enabled only for languages that has the server registered.
-	autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
-augroup END
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Symbol renaming.
+nmap <leader>rn <Plug>(coc-rename)
