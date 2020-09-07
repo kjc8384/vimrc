@@ -6,45 +6,45 @@ set nocompatible
 set hidden
 filetype off
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+call plug#begin('~/.vim/plugged')
 
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'geoffharcourt/vim-matchit'
-Plugin 'neoclide/coc.nvim'
-Plugin 'liuchengxu/vista.vim'
+Plug 'VundleVim/Vundle.vim'
+Plug 'geoffharcourt/vim-matchit'
+Plug 'neoclide/coc.nvim'
+Plug 'liuchengxu/vista.vim'
 " need fonts : https://github.com/ryanoasis/nerd-fonts
-Plugin 'easymotion/vim-easymotion'
-Plugin 'vim-syntastic/syntastic'
-Plugin 'ctrlp.vim'
-Plugin 'bling/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-"Plugin 'steffanc/cscopemaps.vim'
-Plugin 'vim-coffee-script'
-"Plugin 'derekwyatt/vim-scala'
-Plugin 'vcscommand.vim'
-"Plugin 'Yggdroot/indentLine'
-Plugin 'indenthtml.vim'
-"Plugin 'vim-javascript'
-Plugin 'othree/html5.vim'
-Plugin 'airblade/vim-gitgutter'
-"Plugin 'jeroenbourgois/vim-actionscript'
-Plugin 'leafgarland/typescript-vim'
-Plugin 'othree/yajs.vim'
-Plugin 'othree/es.next.syntax.vim'
-Plugin 'godlygeek/tabular'
-Plugin 'prabirshrestha/asyncomplete.vim'
-Plugin 'prabirshrestha/async.vim'
-Plugin 'prabirshrestha/vim-lsp'
-Plugin 'prabirshrestha/asyncomplete-lsp.vim'
-Plugin 'embear/vim-localvimrc'
+Plug 'easymotion/vim-easymotion'
+Plug 'vim-syntastic/syntastic'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+"Plug 'steffanc/cscopemaps.vim'
+"Plug 'vim-coffee-script'
+"Plug 'derekwyatt/vim-scala'
+"Plug 'vcscommand.vim'
+"Plug 'Yggdroot/indentLine'
+"Plug 'indenthtml.vim'
+"Plug 'vim-javascript'
+Plug 'othree/html5.vim'
+Plug 'airblade/vim-gitgutter'
+"Plug 'jeroenbourgois/vim-actionscript'
+Plug 'leafgarland/typescript-vim'
+Plug 'othree/yajs.vim'
+Plug 'othree/es.next.syntax.vim'
+Plug 'godlygeek/tabular'
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
+Plug 'embear/vim-localvimrc'
+Plug 'tpope/vim-fugitive'
 
-Plugin 'ryanolsonx/vim-lsp-javascript'
+Plug 'ryanolsonx/vim-lsp-javascript'
 
 " see wiki : https://github.com/ryanolsonx/vim-lsp-javascript
 " npm install -g typescript typescript-language-server
 
-call vundle#end()
+call plug#end()
 
 let g:airline#extensions#whitespace#enabled = 0
 
@@ -139,7 +139,7 @@ set title
 "set foldmethod=marker
 
 "use mouse wheel for scroll
-if &term == "screen"
+if &term == "screen" && !has('nvim')
     set ttymouse=xterm2
 endif
 
@@ -239,8 +239,8 @@ let g:tagbar_usearrows = 1
 let g:syntastic_html_tidy_exec = '/usr/local/bin/tidy'
 
 " vcscommand
-nnoremap <F7> :VCSVimDiff<CR>
-nnoremap <F8> :VCSAnnotate!<CR>
+nnoremap <F7> :Gdiffsplit<CR>
+nnoremap <F8> :Gblame<CR>
 
 "vim-airline
 let g:airline_theme='molokai'
@@ -259,9 +259,9 @@ let g:syntastic_check_on_wq = 0
 " OS clipboard integration
 " be sure to check +clipboard 
 " mac
-"set clipboard=unnamed
+set clipboard=unnamed
 " linux
-set clipboard=unnamedplus
+"set clipboard=unnamedplus
 
 "Tabular
 nmap <Leader>a= :Tabularize /=<CR>
