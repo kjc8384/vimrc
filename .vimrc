@@ -8,7 +8,6 @@ filetype off
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'VundleVim/Vundle.vim'
 Plug 'geoffharcourt/vim-matchit'
 Plug 'neoclide/coc.nvim'
 Plug 'liuchengxu/vista.vim'
