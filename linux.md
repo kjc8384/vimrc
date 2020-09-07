@@ -18,3 +18,7 @@ Section "InputClass"
 	Driver "evdev"
 	Option "ButtonMapping" "3 8 1 4 5 6 7 9"
 EndSection```
+
+# powerline font
+
+- [nerd-fonts](https://github.com/ryanoasis/nerd-fonts)
