@@ -10,13 +10,15 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'geoffharcourt/vim-matchit'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" need : CocInstall coc-json cos-tsserver
 Plug 'liuchengxu/vista.vim'
-" need fonts : https://github.com/ryanoasis/nerd-fonts
+" need : universal ctags (https://github.com/universal-ctags/ctags)
 Plug 'easymotion/vim-easymotion'
 Plug 'vim-syntastic/syntastic'
 "Plug 'ctrlpvim/ctrlp.vim'
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+" need fonts : https://github.com/ryanoasis/nerd-fonts
 "Plug 'steffanc/cscopemaps.vim'
 "Plug 'vim-coffee-script'
 "Plug 'derekwyatt/vim-scala'
