@@ -8,7 +8,31 @@
 
 ## KBS VPN
 
-- https://cis.technion.ac.il/en/central-services/communication/off-campus-connection/ssl-vpn/pulse-secure-on-linux-alternative/
+- <https://cis.technion.ac.il/en/central-services/communication/off-campus-connection/ssl-vpn/pulse-secure-on-linux-alternative/>
+
+## touch-and-drag-lock
+
+- libinput Tapping Drag Lock Enabled
+- in /usr/share/X11/xorg.conf.d/40-libinput.conf
+
+```
+Section "InputClass"
+        Identifier "libinput touchpad catchall"
+        MatchIsTouchpad "on"
+        MatchDevicePath "/dev/input/event*"
+        Driver "libinput"
+        Option "TappingDragLock" "on"
+EndSection
+```
+
+## touchscreen
+
+- <https://wiki.archlinux.org/index.php/Touchscreen>
+- in .xsessionrc
+
+```bash
+sleep 4 && xinput --map-to-output 'pointer:Atmel Atmel maXTouch Digitizer' "eDP-1" &
+```
 
 ## kensington trackball (slimblade)
 
