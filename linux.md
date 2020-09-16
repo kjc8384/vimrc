@@ -6,6 +6,10 @@
 - [fusuma](https://github.com/iberianpig/fusuma)
 - plank
 
+## KBS VPN
+
+- https://cis.technion.ac.il/en/central-services/communication/off-campus-connection/ssl-vpn/pulse-secure-on-linux-alternative/
+
 ## kensington trackball (slimblade)
 
 - <https://dcmru.tistory.com/2511056>
