@@ -34,6 +34,7 @@ Plug 'othree/es.next.syntax.vim'
 Plug 'godlygeek/tabular'
 Plug 'embear/vim-localvimrc'
 Plug 'tpope/vim-fugitive'
+Plug 'preservim/nerdcommenter'
 
 call plug#end()
 
@@ -161,13 +162,6 @@ nnoremap <F11> :set encoding=cp949<CR> :e<CR>
 nnoremap <F12> :set encoding=utf-8<CR> :e<CR>
 
 nnoremap <silent> <Leader>l ml:execute 'match Search /\%'.line('.').'l/'<CR>
-
-
-" comment/uncomment mapping
-map <Leader>3 :s/^/#/g<CR>
-map <Leader>4 :s/^#//g<CR>
-map <Leader>5 :s/^/\/\//g<CR>
-map <Leader>6 :s/^\/\///g<CR>
 
 "backspace in Visual mode deletes selection
 vnoremap <BS> d
@@ -312,3 +306,6 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
+
+" json formatting
+nmap <Leader>jq :%!jq<CR>
