@@ -10,7 +10,7 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'geoffharcourt/vim-matchit'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" need : CocInstall coc-json cos-tsserver
+" need : CocInstall coc-json cos-tsserver coc-vetur
 Plug 'liuchengxu/vista.vim'
 " need : universal ctags (https://github.com/universal-ctags/ctags)
 Plug 'easymotion/vim-easymotion'
@@ -35,6 +35,7 @@ Plug 'godlygeek/tabular'
 Plug 'embear/vim-localvimrc'
 Plug 'tpope/vim-fugitive'
 Plug 'preservim/nerdcommenter'
+Plug 'editorconfig/editorconfig-vim'
 
 call plug#end()
 
