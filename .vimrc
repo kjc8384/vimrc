@@ -32,7 +32,6 @@ Plug 'leafgarland/typescript-vim'
 Plug 'othree/yajs.vim'
 Plug 'othree/es.next.syntax.vim'
 Plug 'godlygeek/tabular'
-Plug 'embear/vim-localvimrc'
 Plug 'tpope/vim-fugitive'
 Plug 'preservim/nerdcommenter'
 Plug 'editorconfig/editorconfig-vim'
@@ -86,9 +85,6 @@ au BufNewFile,BufReadPost diff.log set filetype=diff
 " tex
 au BufNewFile,BufReadPost *.tex set et fileencoding=utf-8
 
-" json
-au BufNewFile,BufReadPost *.json set filetype=javascript
-
 " ejs
 au BufNewFile,BufReadPost *.ejs set filetype=html
 
@@ -103,6 +99,9 @@ au BufNewFile,BufReadPost *.ts set filetype=typescript
 
 " json
 au BufNewFile,BufReadPost *.json set filetype=json
+
+" javascript
+au BufNewFile,BufReadPost *.js set filetype=javascript suffixesadd+=.js
 
 " yaml
 au BufNewFile,BufReadPost *.yaml set et 
@@ -143,6 +142,8 @@ endif
 "Color settings
 color torte
 "set background=dark
+highlight Normal guibg=none
+highlight NonText guibg=none
 
 "persistant undo (7.3 or above)
 set undofile
@@ -245,9 +246,9 @@ let g:syntastic_check_on_wq = 0
 " OS clipboard integration
 " be sure to check +clipboard 
 " mac
-set clipboard=unnamed
+"set clipboard=unnamed
 " linux
-"set clipboard=unnamedplus
+set clipboard=unnamedplus
 
 "Tabular
 nmap <Leader>a= :Tabularize /=<CR>
@@ -255,35 +256,12 @@ vmap <Leader>a= :Tabularize /=<CR>
 nmap <Leader>a\| :Tabularize /\|<CR>
 vmap <Leader>a\| :Tabularize /\|<CR>
 
-" vim-localvimrc
-let g:localvimrc_ask=0
-
-" language server
-"function! s:on_lsp_buffer_enabled() abort
-"	setlocal omnifunc=lsp#complete
-"	setlocal signcolumn=yes
-"	if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
-"	nmap <buffer> gd <plug>(lsp-definition)
-"	nmap <buffer> gr <plug>(lsp-references)
-"	nmap <buffer> gi <plug>(lsp-implementation)
-"	nmap <buffer> gt <plug>(lsp-type-definition)
-"	nmap <buffer> <leader>rn <plug>(lsp-rename)
-"	nmap <buffer> [g <Plug>(lsp-previous-diagnostic)
-"	nmap <buffer> ]g <Plug>(lsp-next-diagnostic)
-"	nmap <buffer> K <plug>(lsp-hover)
-"
-"	" refer to doc to add more commands
-"endfunction
-"
-"augroup lsp_install
-"	au!
-"	" call s:on_lsp_buffer_enabled only for languages that has the server registered.
-"	autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
-"augroup END
-
 "Coc
 set updatetime=300
 set shortmess+=c
+
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
