@@ -34,7 +34,7 @@ EndSection
 sleep 4 && xinput --map-to-output 'pointer:Atmel Atmel maXTouch Digitizer' "eDP-1" &
 ```
 
-## kensington trackball (slimblade)
+## kensington trackball (export mouse)
 
 - <https://dcmru.tistory.com/2511056>
 - check device name by : xinput list
@@ -48,7 +48,8 @@ Section "InputClass"
 	MatchDevicePath "/dev/input/event*"
 	Driver "evdev"
 	Option "ButtonMapping" "3 8 1 4 5 6 7 9"
-EndSection```
+EndSection
+```
 
 ## powerline font
 
