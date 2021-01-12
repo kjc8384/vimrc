@@ -10,7 +10,7 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'geoffharcourt/vim-matchit'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" need : CocInstall coc-json cos-tsserver coc-vetur
+" need : CocInstall coc-json cos-tsserver coc-vetur coc-lists
 Plug 'liuchengxu/vista.vim'
 " need : universal ctags (https://github.com/universal-ctags/ctags)
 Plug 'easymotion/vim-easymotion'
@@ -260,8 +260,19 @@ vmap <Leader>a\| :Tabularize /\|<CR>
 set updatetime=300
 set shortmess+=c
 
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
 
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
@@ -285,6 +296,35 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
+
+" grep by motion
+vnoremap <leader>g :<C-u>call <SID>GrepFromSelected(visualmode())<CR>
+nnoremap <leader>g :<C-u>set operatorfunc=<SID>GrepFromSelected<CR>g@
+
+function! s:GrepFromSelected(type)
+  let saved_unnamed_register = @@
+  if a:type ==# 'v'
+    normal! `<v`>y
+  elseif a:type ==# 'char'
+    normal! `[v`]y
+  else
+    return
+  endif
+  let word = substitute(@@, '\n$', '', 'g')
+  let word = escape(word, '| ')
+  let @@ = saved_unnamed_register
+  execute 'CocList --normal grep '.word
+endfunction
+
+" grep current word in current buffer
+nnoremap <silent> <space>w  :exe 'CocList -I --normal --input='.expand('<cword>').' words'<CR>
+
+" Do default action for next item.
+nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
+" Do default action for previous item.
+nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
+" Resume latest coc list.
+nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
 " json formatting
 nmap <Leader>jq :%!jq<CR>
