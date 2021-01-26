@@ -12,29 +12,29 @@ Plug 'geoffharcourt/vim-matchit'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " need : CocInstall coc-json cos-tsserver coc-vetur coc-lists
 Plug 'liuchengxu/vista.vim'
-" need : universal ctags (https://github.com/universal-ctags/ctags)
 Plug 'easymotion/vim-easymotion'
 Plug 'vim-syntastic/syntastic'
 "Plug 'ctrlpvim/ctrlp.vim'
-Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+"Plug 'itchyny/lightline.vim'
+"Plug 'liuchengxu/eleline.vim'
 " need fonts : https://github.com/ryanoasis/nerd-fonts
 "Plug 'steffanc/cscopemaps.vim'
 "Plug 'vim-coffee-script'
 "Plug 'derekwyatt/vim-scala'
 "Plug 'Yggdroot/indentLine'
 "Plug 'indenthtml.vim'
-"Plug 'vim-javascript'
 Plug 'othree/html5.vim'
 Plug 'airblade/vim-gitgutter'
-"Plug 'jeroenbourgois/vim-actionscript'
 Plug 'leafgarland/typescript-vim'
-Plug 'othree/yajs.vim'
-Plug 'othree/es.next.syntax.vim'
+"Plug 'pangloss/vim-javascript'
 Plug 'godlygeek/tabular'
 Plug 'tpope/vim-fugitive'
 Plug 'preservim/nerdcommenter'
 Plug 'editorconfig/editorconfig-vim'
+Plug 'luochen1990/rainbow'
+Plug 'nathanaelkane/vim-indent-guides'
 
 call plug#end()
 
@@ -142,8 +142,8 @@ endif
 "Color settings
 color torte
 "set background=dark
-highlight Normal guibg=none
-highlight NonText guibg=none
+"highlight Normal guibg=none
+"highlight NonText guibg=none
 
 "persistant undo (7.3 or above)
 set undofile
@@ -233,6 +233,7 @@ nnoremap <F8> :Gblame<CR>
 let g:airline_theme='molokai'
 set laststatus=2
 let g:airline#extensions#tabline#enabled=1
+let g:airline_powerline_fonts = 1
 
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
@@ -332,3 +333,12 @@ nmap <Leader>jq :%!jq<CR>
 " URL encode/decode selection
 vnoremap <leader>en :!python -c 'import sys,urllib;print urllib.quote(sys.stdin.read().strip())'<cr>
 vnoremap <leader>de :!python -c 'import sys,urllib;print urllib.unquote(sys.stdin.read().strip())'<cr>
+
+let g:rainbow_active = 1
+
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_auto_colors = 0
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#303030 ctermbg=3
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#191919 ctermbg=4
+
+set noshowmode
