@@ -54,3 +54,7 @@ EndSection
 ## powerline font
 
 - [nerd-fonts](https://github.com/ryanoasis/nerd-fonts)
+
+## WIFI issue
+
+- <https://easylinuxtipsproject.blogspot.com/p/internet.html#ID2.2>

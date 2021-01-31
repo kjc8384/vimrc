@@ -101,7 +101,8 @@ au BufNewFile,BufReadPost *.ts set filetype=typescript
 au BufNewFile,BufReadPost *.json set filetype=json
 
 " javascript
-au BufNewFile,BufReadPost *.js set filetype=javascript suffixesadd+=.js
+au BufNewFile,BufReadPost *.js set filetype=javascript suffixesadd+=.js,.vue,.scss
+au BufNewFile,BufReadPost *.vue set suffixesadd+=.js,.vue,.scss
 
 " yaml
 au BufNewFile,BufReadPost *.yaml set et 
@@ -334,6 +335,8 @@ nmap <Leader>jq :%!jq<CR>
 vnoremap <leader>en :!python -c 'import sys,urllib;print urllib.quote(sys.stdin.read().strip())'<cr>
 vnoremap <leader>de :!python -c 'import sys,urllib;print urllib.unquote(sys.stdin.read().strip())'<cr>
 
+let g:NERDSpaceDelims = 1
+
 let g:rainbow_active = 1
 
 let g:indent_guides_enable_on_vim_startup = 1
@@ -342,3 +345,21 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#303030 ctermbg=3
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#191919 ctermbg=4
 
 set noshowmode
+
+" easymotion
+let g:EasyMotion_do_mapping = 0 " Disable default mappings
+
+" Jump to anywhere you want with minimal keystrokes, with just one key binding.
+" `s{char}{label}`
+nmap <leader><leader>s <Plug>(easymotion-overwin-f)
+" or
+" `s{char}{char}{label}`
+" Need one more keystroke, but on average, it may be more comfortable.
+nmap <leader><leader>s <Plug>(easymotion-overwin-f2)
+
+" Turn on case-insensitive feature
+let g:EasyMotion_smartcase = 1
+
+let g:rainbow_conf = {
+			\ 'guifgs': ['Gold1', 'violet', 'Lime', 'Magenta2'],
+			\}
