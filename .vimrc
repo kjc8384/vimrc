@@ -8,7 +8,7 @@ filetype off
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'geoffharcourt/vim-matchit'
+Plug 'adelarsq/vim-matchit'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " need : CocInstall coc-json cos-tsserver coc-vetur coc-lists
 Plug 'liuchengxu/vista.vim'
@@ -201,6 +201,8 @@ nnoremap <C-H> :bp<CR>
 nnoremap <C-L> :bn<CR>
 nnoremap <C-N> :cn<CR>
 nnoremap <C-P> :cp<CR>
+nnoremap <C-K> :lnext<CR>
+nnoremap <C-J> :lprev<CR>
 
 " for maven...
 "set makeprg=mvn3\ compile\ -f\ /kbs/kdns3/nrcs_web/pom.xml

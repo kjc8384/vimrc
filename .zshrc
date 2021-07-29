@@ -105,6 +105,7 @@ source ~/.antigenrc
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias rm='rm -i'
 alias vim='nvim'
+alias vimdiff='nvim -d'
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
