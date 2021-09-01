@@ -13,7 +13,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " need : CocInstall coc-json cos-tsserver coc-vetur coc-lists
 Plug 'liuchengxu/vista.vim'
 Plug 'easymotion/vim-easymotion'
-Plug 'vim-syntastic/syntastic'
+"Plug 'vim-syntastic/syntastic'
 "Plug 'ctrlpvim/ctrlp.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -210,23 +210,23 @@ nnoremap <C-J> :lprev<CR>
 
 " syntastic
 " When writing a file, if there are errors, have Syntastic plugin mark them
-let g:syntastic_enable_signs=1
-let g:syntastic_auto_loc_list=1
+" let g:syntastic_enable_signs=1
+" let g:syntastic_auto_loc_list=1
 
-let g:syntastic_java_checkers = ['checkstyle']  " use checkstyle, even if I have javac installed
-let g:syntastic_enable_perl_checker = 1
-let g:syntastic_perl_checkers = ['perl']
+" let g:syntastic_java_checkers = ['checkstyle']  " use checkstyle, even if I have javac installed
+" let g:syntastic_enable_perl_checker = 1
+" let g:syntastic_perl_checkers = ['perl']
 
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_typescript_checkers = ['eslint']
+" let g:syntastic_javascript_checkers = ['eslint']
+" let g:syntastic_typescript_checkers = ['eslint']
 
-let g:syntastic_coffee_checkers = ['coffeelint']
-let g:syntastic_coffee_coffeelint_args = "--csv --file config.json"
+" let g:syntastic_coffee_checkers = ['coffeelint']
+" let g:syntastic_coffee_coffeelint_args = "--csv --file config.json"
 
-let g:tagbar_usearrows = 1
+" let g:tagbar_usearrows = 1
 
-"use tidy
-let g:syntastic_html_tidy_exec = '/usr/local/bin/tidy'
+" "use tidy
+" let g:syntastic_html_tidy_exec = '/usr/local/bin/tidy'
 
 " vcscommand
 nnoremap <F7> :Gdiffsplit<CR>
@@ -278,6 +278,12 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
+" coc-eslint
+" Use `[g` and `]g` to navigate diagnostics
+" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
@@ -301,6 +307,13 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
 
+" Formatting selected code.
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
+" Apply AutoFix to problem on the current line.
+nmap <leader>qf  <Plug>(coc-fix-current)
+
 " grep by motion
 vnoremap <leader>g :<C-u>call <SID>GrepFromSelected(visualmode())<CR>
 nnoremap <leader>g :<C-u>set operatorfunc=<SID>GrepFromSelected<CR>g@
@@ -323,6 +336,9 @@ endfunction
 " grep current word in current buffer
 nnoremap <silent> <space>w  :exe 'CocList -I --normal --input='.expand('<cword>').' words'<CR>
 
+" Mappings for CoCList
+" Show all diagnostics.
+nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
 " Do default action for next item.
 nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 " Do default action for previous item.
