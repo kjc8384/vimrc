@@ -1,5 +1,6 @@
 {
 	"coc.preferences.useQuickfixForLocations": true,
+	"javascript.suggestionActions.enabled": false,
 	"eslint.alwaysShowStatus": true,
 	"eslint.run": "onSave"
 }
