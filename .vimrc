@@ -35,6 +35,7 @@ Plug 'preservim/nerdcommenter'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'luochen1990/rainbow'
 Plug 'nathanaelkane/vim-indent-guides'
+Plug 'wellle/context.vim'
 
 call plug#end()
 
