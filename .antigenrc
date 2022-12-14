@@ -12,6 +12,7 @@ antigen bundle macos
 antigen bundle encode64
 antigen bundle docker
 antigen bundle brew
+antigen bundle "MichaelAquilina/zsh-autoswitch-virtualenv"
 
 #antigen theme bureau
 antigen theme https://github.com/caiogondim/bullet-train-oh-my-zsh-theme bullet-train
