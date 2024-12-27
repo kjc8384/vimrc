@@ -36,6 +36,11 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'luochen1990/rainbow'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'wellle/context.vim'
+Plug 'github/copilot.vim'
+Plug 'tpope/vim-characterize'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.8' }
+" need ripgrep for telescope
 
 call plug#end()
 
@@ -231,7 +236,7 @@ nnoremap <C-J> :lprev<CR>
 
 " vcscommand
 nnoremap <F7> :Gdiffsplit<CR>
-nnoremap <F8> :Gblame<CR>
+nnoremap <F8> :Git blame<CR>
 
 "vim-airline
 let g:airline_theme='molokai'
@@ -399,3 +404,8 @@ let g:rainbow_conf = {
 			\ 'guifgs': ['Gold1', 'violet', 'Lime', 'Magenta2'],
 			\}
 
+" Find files using Telescope command-line sugar.
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
