@@ -6,51 +6,12 @@ set nocompatible
 set hidden
 filetype off
 
-call plug#begin('~/.vim/plugged')
-
-Plug 'adelarsq/vim-matchit'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" need : CocInstall coc-json cos-tsserver coc-vetur coc-lists
-Plug 'liuchengxu/vista.vim'
-Plug 'easymotion/vim-easymotion'
-"Plug 'vim-syntastic/syntastic'
-"Plug 'ctrlpvim/ctrlp.vim'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-"Plug 'itchyny/lightline.vim'
-"Plug 'liuchengxu/eleline.vim'
-" need fonts : https://github.com/ryanoasis/nerd-fonts
-"Plug 'steffanc/cscopemaps.vim'
-"Plug 'vim-coffee-script'
-"Plug 'derekwyatt/vim-scala'
-"Plug 'Yggdroot/indentLine'
-"Plug 'indenthtml.vim'
-Plug 'othree/html5.vim'
-Plug 'airblade/vim-gitgutter'
-Plug 'leafgarland/typescript-vim'
-"Plug 'pangloss/vim-javascript'
-Plug 'godlygeek/tabular'
-Plug 'tpope/vim-fugitive'
-Plug 'preservim/nerdcommenter'
-Plug 'editorconfig/editorconfig-vim'
-Plug 'luochen1990/rainbow'
-Plug 'nathanaelkane/vim-indent-guides'
-Plug 'wellle/context.vim'
-Plug 'github/copilot.vim'
-Plug 'tpope/vim-characterize'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.8' }
-" need ripgrep for telescope
-
-call plug#end()
-
 let g:airline#extensions#whitespace#enabled = 0
 
 " load default
 "source $VIMRUNTIME/vimrc_example.vim
 
 set tags=tags;/,./tags
-set nocompatible
 set autoindent
 set smartindent
 set nobackup
