@@ -34,24 +34,73 @@ vim.opt.rtp:prepend(lazypath)
 -- 4. 플러그인 목록 및 설정
 -- =====================================================================
 require("lazy").setup({
+  { import = "plugins" }, -- plugins.lua에서 플러그인 목록과 설정을 관리
   -- [1] 기존 플러그인 이전 (vim-plug에서 가져옴)
   { "adelarsq/vim-matchit" },
   { "neoclide/coc.nvim", branch = "release" },
   { "liuchengxu/vista.vim" },
   { "easymotion/vim-easymotion" },
-  { "vim-airline/vim-airline" },
-  { "vim-airline/vim-airline-themes" },
+  {
+    'nvim-lualine/lualine.nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    opts = {
+      options = {
+        theme = 'material',
+        icons_enabled = true,
+      }
+    },
+    cond = function() return not vim.g.vscode end,
+  },
+  {
+    'akinsho/bufferline.nvim',
+    version = "*",
+    dependencies = 'nvim-tree/nvim-web-devicons',
+    opts = {
+      options = {
+        mode = "buffers", -- 탭 대신 버퍼 모드로 표시
+        separator_style = "slant", -- 세련된 사선 스타일
+        show_buffer_close_icons = false,
+        show_close_icon = false,
+        diagnostics = "nvim_lsp", -- LSP 진단 정보 표시
+      }
+    },
+    cond = function() return not vim.g.vscode end,
+  },
   { "othree/html5.vim" },
-  { "airblade/vim-gitgutter" },
+  {
+    'lewis6991/gitsigns.nvim',
+    event = { "BufReadPre", "BufNewFile" },
+    opts = {
+      current_line_blame = true, -- 누가 이 줄을 수정했는지 옆에 흐릿하게 표시
+      signcolumn = true,
+    }
+  },
   { "leafgarland/typescript-vim" },
   { "godlygeek/tabular" },
   { "tpope/vim-fugitive" },
-  { "preservim/nerdcommenter" },
+  {
+    'numToStr/Comment.nvim',
+	dependencies = {
+      -- 문맥에 맞는 주석 처리를 도와주는 플러그인
+      'JoosepAlviste/nvim-ts-context-commentstring',
+    },
+    event = "VeryLazy",
+  },
   { "editorconfig/editorconfig-vim" },
-  { "luochen1990/rainbow" },
-  { "nathanaelkane/vim-indent-guides" },
-  { "wellle/context.vim" },
-  { "github/copilot.vim" },
+  { "HiPhish/rainbow-delimiters.nvim" },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    lazy = false,
+    build = ":TSUpdate",
+  },
+  {
+    "nvim-treesitter/nvim-treesitter-context",
+    event = { "BufReadPost", "BufNewFile" },
+    opts = { mode = "cursor", max_lines = 3 }, -- 최대 3줄까지 상단 고정
+    cond = function() return not vim.g.vscode end,
+  },
+  -- { "wellle/context.vim" },
+  { "github/copilot.vim" }
   { "tpope/vim-characterize" },
   {
     "nvim-telescope/telescope.nvim",

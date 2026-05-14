@@ -6,8 +6,6 @@ set nocompatible
 set hidden
 filetype off
 
-let g:airline#extensions#whitespace#enabled = 0
-
 " load default
 "source $VIMRUNTIME/vimrc_example.vim
 
@@ -199,17 +197,7 @@ nnoremap <C-J> :lprev<CR>
 nnoremap <F7> :Gdiffsplit<CR>
 nnoremap <F8> :Git blame<CR>
 
-"vim-airline
-let g:airline_theme='molokai'
 set laststatus=2
-let g:airline#extensions#tabline#enabled=1
-let g:airline_powerline_fonts = 1
-
-if !exists('g:vscode')
-	set statusline+=%#warningmsg#
-	set statusline+=%{SyntasticStatuslineFlag()}
-	set statusline+=%*
-endif
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
