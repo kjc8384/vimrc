@@ -37,7 +37,6 @@ require("lazy").setup({
   { import = "plugins" }, -- plugins.lua에서 플러그인 목록과 설정을 관리
   -- [1] 기존 플러그인 이전 (vim-plug에서 가져옴)
   { "adelarsq/vim-matchit" },
-  { "neoclide/coc.nvim", branch = "release" },
   { "liuchengxu/vista.vim" },
   { "easymotion/vim-easymotion" },
   {
