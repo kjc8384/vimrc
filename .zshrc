@@ -1,5 +1,7 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:$PATH
+
+zstyle ':omz:alpha:lib:git' async-prompt no
 
 # Path to your oh-my-zsh installation.
 if [[ `uname` == "Linux" ]]; then
@@ -89,7 +91,7 @@ source $ZSH/oh-my-zsh.sh
 # else
 #   export EDITOR='mvim'
 # fi
-source /usr/local/share/antigen/antigen.zsh
+source /Users/kjc8384/antigen.zsh
 source ~/.antigenrc
 
 # Compilation flags
@@ -104,11 +106,61 @@ source ~/.antigenrc
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias rm='rm -i'
+alias vi='nvim'
 alias vim='nvim'
 alias vimdiff='nvim -d'
+# alias awf='docker run --rm -v `pwd`:/tmp -w /tmp realies/audiowaveform'
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 export AWS_PROFILE=devel
+
+export JAVA_HOME_11=$(/usr/libexec/java_home -v11)
+export JAVA_HOME_17=$(/usr/libexec/java_home -v17)
+export JAVA_HOME=$JAVA_HOME_17
+
+# Created by `pipx` on 2022-09-13 08:30:43
+# export PATH="$PATH:/Users/kjc8384/.local/bin"
+# export PYENV_ROOT="$HOME/.pyenv"
+# [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+# eval "$(pyenv init -)"
+# The following lines have been added by Docker Desktop to enable Docker CLI completions.
+fpath=(/Users/kjc8384/.docker/completions $fpath)
+autoload -Uz compinit
+compinit
+# End of Docker CLI completions
+
+#test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh" || true
+
+BULLETTRAIN_NVM_BG=magenta
+
+if [ -n "$SSH_CONNECTION" ] && [ "$TERM" = "xterm-ghostty" ]; then
+  export TERM="xterm-256color"
+fi
+
+# Added by Antigravity
+export PATH="/Users/kjc8384/.antigravity/antigravity/bin:$PATH"
+
+eval "$(starship init zsh)"
+alias docker=podman
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/usr/local/Caskroom/miniforge/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/usr/local/Caskroom/miniforge/base/etc/profile.d/conda.sh" ]; then
+        . "/usr/local/Caskroom/miniforge/base/etc/profile.d/conda.sh"
+    else
+        export PATH="/usr/local/Caskroom/miniforge/base/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+
+# Added by Antigravity IDE
+export PATH="/Users/kjc8384/.antigravity-ide/antigravity-ide/bin:$PATH"
