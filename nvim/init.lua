@@ -99,7 +99,7 @@ require("lazy").setup({
     cond = function() return not vim.g.vscode end,
   },
   -- { "wellle/context.vim" },
-  { "github/copilot.vim" },
+  -- { "github/copilot.vim" },
   { "tpope/vim-characterize" },
   {
     "nvim-telescope/telescope.nvim",
