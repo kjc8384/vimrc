@@ -132,8 +132,6 @@ autoload -Uz compinit
 compinit
 # End of Docker CLI completions
 
-#test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh" || true
-
 BULLETTRAIN_NVM_BG=magenta
 
 if [ -n "$SSH_CONNECTION" ] && [ "$TERM" = "xterm-ghostty" ]; then
@@ -146,21 +144,38 @@ export PATH="/Users/kjc8384/.antigravity/antigravity/bin:$PATH"
 eval "$(starship init zsh)"
 alias docker=podman
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/usr/local/Caskroom/miniforge/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/usr/local/Caskroom/miniforge/base/etc/profile.d/conda.sh" ]; then
-        . "/usr/local/Caskroom/miniforge/base/etc/profile.d/conda.sh"
-    else
-        export PATH="/usr/local/Caskroom/miniforge/base/bin:$PATH"
-    fi
+# Homebrew 경로 자동 인식 (Apple Silicon vs Intel)
+if [[ -f /opt/homebrew/bin/brew ]]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+elif [[ -f /usr/local/bin/brew ]]; then
+  eval "$(/usr/local/bin/brew shellenv)"
 fi
-unset __conda_setup
-# <<< conda initialize <<<
 
+# >>> conda initialize (custom) >>>
+# Apple Silicon / Intel Caskroom 경로 동적 분기
+if [[ -d "/opt/homebrew/Caskroom/miniforge/base" ]]; then
+  _CONDA_ROOT="/opt/homebrew/Caskroom/miniforge/base"
+elif [[ -d "/usr/local/Caskroom/miniforge/base" ]]; then
+  _CONDA_ROOT="/usr/local/Caskroom/miniforge/base"
+fi
+
+if [[ -n "$_CONDA_ROOT" ]]; then
+  __conda_setup="$("$_CONDA_ROOT/bin/conda" 'shell.zsh' 'hook' 2> /dev/null)"
+  if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+  else
+    if [ -f "$_CONDA_ROOT/etc/profile.d/conda.sh" ]; then
+      . "$_CONDA_ROOT/etc/profile.d/conda.sh"
+    else
+      export PATH="$_CONDA_ROOT/bin:$PATH"
+    fi
+  fi
+  unset __conda_setup
+  unset _CONDA_ROOT
+fi
+# <<< conda initialize <<<
 
 # Added by Antigravity IDE
 export PATH="/Users/kjc8384/.antigravity-ide/antigravity-ide/bin:$PATH"
+
+alias marp='marp -c ~/conf/marp/marprc.yml'
