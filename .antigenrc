@@ -11,11 +11,13 @@ antigen bundle npm
 antigen bundle nvm
 antigen bundle macos
 antigen bundle encode64
-antigen bundle docker
+antigen bundle podman
 antigen bundle brew
-antigen bundle "MichaelAquilina/zsh-autoswitch-virtualenv"
+antigen bundle pyenv
+antigen bundle command-not-found
+#antigen bundle "MichaelAquilina/zsh-autoswitch-virtualenv"
 
 #antigen theme bureau
-antigen theme https://github.com/caiogondim/bullet-train-oh-my-zsh-theme bullet-train
+#antigen theme https://github.com/caiogondim/bullet-train-oh-my-zsh-theme bullet-train
 
 antigen apply
