@@ -88,7 +88,8 @@ require("lazy").setup({
   { "editorconfig/editorconfig-vim" },
   {
 	  "HiPhish/rainbow-delimiters.nvim",
-		config = function()
+	  cond = not vim.g.vscode, -- VS Code에서는 비활성화, 터미널에서는 활성화
+	  config = function()
 		local highlight = {
 			"RainbowRed",
 			"RainbowYellow",
@@ -137,3 +138,18 @@ require("lazy").setup({
     dependencies = { "nvim-lua/plenary.nvim" }
   }
  })
+
+-- copy/paste support over ssh
+vim.opt.clipboard = "unnamedplus"
+
+vim.g.clipboard = {
+  name = 'OSC 52',
+  copy = {
+    ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
+    ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
+  },
+  paste = {
+    ['+'] = require('vim.ui.clipboard.osc52').paste('+'),
+    ['*'] = require('vim.ui.clipboard.osc52').paste('*'),
+  },
+}
